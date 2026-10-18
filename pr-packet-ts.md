@@ -1,4 +1,4 @@
-# PR packet — generated 2026-10-18T12:47:09Z
+# PR packet — generated 2026-10-18T12:59:45Z
 Contract: references/contract-ts.md (sha256: 98b1b991c03cbdd57d5d150e18ad7d84481c09de2ae51f4d0b91121038c735d3)
 
 ## What was asked (copied from the contract)
@@ -25,27 +25,32 @@ Contract: references/contract-ts.md (sha256: 98b1b991c03cbdd57d5d150e18ad7d84481
 
 ## What changed (git diff --stat)
 ```
- .agents/skills/review/SKILL.md                    |  2 +-
- .agents/skills/review/scripts/collect-evidence.sh |  2 +-
- .gitignore                                        |  1 +
- AGENTS.md                                         |  5 +++--
- README.md                                         | 17 +++++++++++++++++
- 5 files changed, 23 insertions(+), 4 deletions(-)
+ pr-packet.md | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
+ .github/dependabot.yml                             |  4 +++
+ .github/instructions/java.instructions.md          |  8 +++++
+ AGENTS.md                                          |  1 +
+ README.md                                          | 10 ++++--
+ java-demo/pom.xml                                  | 26 ++++++++++++++
+ .../main/java/com/sample/textutils/TextUtils.java  | 28 +++++++++++++++
+ .../java/com/sample/textutils/TextUtilsTest.java   | 40 ++++++++++++++++++++++
+ references/contract-java.md                        | 35 +++++++++++++++++++
+ 8 files changed, 149 insertions(+), 3 deletions(-)
 ```
 
 ## What was run, and the exit code
 ```
 $ node --test "tests-ts/**/*.test.ts"
 ▶ slugify
-  ✔ basic (8.600612ms)
-  ✔ punctuation and case (0.332213ms)
-  ✔ unicode (0.331391ms)
-  ✔ empty (0.301605ms)
-✔ slugify (11.812687ms)
+  ✔ basic (1.639746ms)
+  ✔ punctuation and case (0.305874ms)
+  ✔ unicode (0.363401ms)
+  ✔ empty (0.260178ms)
+✔ slugify (4.810553ms)
 ▶ wordCount
-  ✔ basic (0.54942ms)
-  ✔ empty and whitespace (0.250309ms)
-✔ wordCount (1.139668ms)
+  ✔ basic (0.502873ms)
+  ✔ empty and whitespace (0.275306ms)
+✔ wordCount (1.166669ms)
 ℹ tests 6
 ℹ suites 2
 ℹ pass 6
@@ -53,7 +58,7 @@ $ node --test "tests-ts/**/*.test.ts"
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 283.546812
+ℹ duration_ms 255.607727
 exit code: 0
 ```
 

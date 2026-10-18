@@ -15,10 +15,10 @@ python3 -m unittest discover -s tests
 bash .agents/skills/review/scripts/collect-evidence.sh   # writes pr-packet.md, exits 0 only if tests pass
 ```
 
-## Two demos, two contracts
+## Three demos, three contracts
 
-The repo carries a Python demo and a TypeScript demo side by side, to show the
-contract is per feature — the framework doesn't change.
+The repo carries a Python, a TypeScript, and a Java demo side by side, to show
+the contract is per feature — the framework doesn't change.
 
 ```bash
 # Python demo (default contract)
@@ -26,6 +26,10 @@ bash .agents/skills/review/scripts/collect-evidence.sh
 
 # TypeScript demo (override the contract, proof command, and packet)
 CONTRACT=references/contract-ts.md PROOF_CMD='node --test "tests-ts/**/*.test.ts"' PACKET=pr-packet-ts.md \
+  bash .agents/skills/review/scripts/collect-evidence.sh
+
+# Java demo
+CONTRACT=references/contract-java.md PROOF_CMD="mvn -q -f java-demo/pom.xml test" PACKET=pr-packet-java.md \
   bash .agents/skills/review/scripts/collect-evidence.sh
 ```
 

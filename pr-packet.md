@@ -1,4 +1,4 @@
-# PR packet — generated 2026-10-18T12:47:09Z
+# PR packet — generated 2026-10-18T12:59:44Z
 Contract: references/contract.md (sha256: abb1d0392f2f833bfd10ec965da0e708cd4511b036530ec91c8bca3601e1c1dd)
 
 ## What was asked (copied from the contract)
@@ -25,12 +25,15 @@ Contract: references/contract.md (sha256: abb1d0392f2f833bfd10ec965da0e708cd4511
 
 ## What changed (git diff --stat)
 ```
- .agents/skills/review/SKILL.md                    |  2 +-
- .agents/skills/review/scripts/collect-evidence.sh |  2 +-
- .gitignore                                        |  1 +
- AGENTS.md                                         |  5 +++--
- README.md                                         | 17 +++++++++++++++++
- 5 files changed, 23 insertions(+), 4 deletions(-)
+ .github/dependabot.yml                             |  4 +++
+ .github/instructions/java.instructions.md          |  8 +++++
+ AGENTS.md                                          |  1 +
+ README.md                                          | 10 ++++--
+ java-demo/pom.xml                                  | 26 ++++++++++++++
+ .../main/java/com/sample/textutils/TextUtils.java  | 28 +++++++++++++++
+ .../java/com/sample/textutils/TextUtilsTest.java   | 40 ++++++++++++++++++++++
+ references/contract-java.md                        | 35 +++++++++++++++++++
+ 8 files changed, 149 insertions(+), 3 deletions(-)
 ```
 
 ## What was run, and the exit code
@@ -38,7 +41,7 @@ Contract: references/contract.md (sha256: abb1d0392f2f833bfd10ec965da0e708cd4511
 $ python3 -m unittest discover -s tests
 ......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.001s
+Ran 6 tests in 0.006s
 
 OK
 exit code: 0
