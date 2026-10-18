@@ -14,7 +14,7 @@ set -u
 
 PROOF_CMD="${PROOF_CMD:-python3 -m unittest discover -s tests}"
 PACKET="${PACKET:-pr-packet.md}"
-CONTRACT="references/contract.md"
+CONTRACT="${CONTRACT:-references/contract.md}"
 CONTRACT_SHA="$(sha256sum "$CONTRACT" 2>/dev/null | cut -d' ' -f1)"
 [ -z "$CONTRACT_SHA" ] && CONTRACT_SHA="(contract not found)"
 

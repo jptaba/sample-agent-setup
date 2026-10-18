@@ -1,4 +1,4 @@
-# PR packet — generated 2026-10-18T12:06:28Z
+# PR packet — generated 2026-10-18T12:47:09Z
 Contract: references/contract.md (sha256: abb1d0392f2f833bfd10ec965da0e708cd4511b036530ec91c8bca3601e1c1dd)
 
 ## What was asked (copied from the contract)
@@ -25,20 +25,12 @@ Contract: references/contract.md (sha256: abb1d0392f2f833bfd10ec965da0e708cd4511
 
 ## What changed (git diff --stat)
 ```
- .agents/policy/guardrails.md                      | 24 +++++++++++++++
- .agents/skills/review/SKILL.md                    |  3 ++
- .agents/skills/review/scripts/collect-evidence.sh | 13 +++++++-
- .agents/skills/review/scripts/scan-secrets.sh     | 36 +++++++++++++++++++++++
- .githooks/pre-commit                              | 31 +++++++++++++++++++
- .github/CODEOWNERS                                |  2 ++
- .github/dependabot.yml                            | 10 +++++++
+ .agents/skills/review/SKILL.md                    |  2 +-
+ .agents/skills/review/scripts/collect-evidence.sh |  2 +-
  .gitignore                                        |  1 +
- AGENTS.md                                         |  5 ++++
- GOVERNANCE.md                                     | 36 +++++++++++++++++++++++
- README.md                                         |  7 +++++
- SECURITY.md                                       | 24 +++++++++++++++
- docs/adr/0001-record-architecture-decisions.md    | 17 +++++++++++
- 13 files changed, 208 insertions(+), 1 deletion(-)
+ AGENTS.md                                         |  5 +++--
+ README.md                                         | 17 +++++++++++++++++
+ 5 files changed, 23 insertions(+), 4 deletions(-)
 ```
 
 ## What was run, and the exit code

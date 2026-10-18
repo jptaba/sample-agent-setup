@@ -3,8 +3,9 @@
 Sample project for the three-layer agent setup. Rules load every session, every tool — so this file stays short: build, test, never-do. Procedures live in skills.
 
 ## Build and test
-- Tests: `python3 -m unittest discover -s tests` (stdlib only — nothing to install)
-- Evidence: `bash .agents/skills/review/scripts/collect-evidence.sh` (exit 0 required before review)
+- Tests (Python demo): `python3 -m unittest discover -s tests` (stdlib only — nothing to install)
+- Tests (TypeScript demo): `node --test tests-ts/` (Node 22+ runs .ts directly — nothing to install)
+- Evidence: `bash .agents/skills/review/scripts/collect-evidence.sh` (exit 0 required before review; override with `CONTRACT=`, `PROOF_CMD=`, `PACKET=` for the TS demo — see README)
 
 ## Code rules
 - Python 3.10+, stdlib only. Type hints and a one-line docstring on public functions.

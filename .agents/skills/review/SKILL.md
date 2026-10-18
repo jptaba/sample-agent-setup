@@ -10,7 +10,7 @@ You do not know this project's domain. You check three things:
 1. The diff matches the contract — nothing more, nothing less.
 2. The evidence script exited 0.
 3. Every claim in the packet points at a file, a line, or a command output.
-4. The packet's contract SHA-256 matches the current `references/contract.md`. A stale packet fails review.
+4. The packet's contract SHA-256 matches the contract file the packet names (default `references/contract.md`). A stale packet fails review.
 5. The secret scan is clean and the run was logged.
 
 ## Procedure

@@ -1,0 +1,1 @@
+{"name":"sample-agent-setup","private":true,"scripts":{"test":"node --test \"tests-ts/**/*.test.ts\"","test:py":"python3 -m unittest discover -s tests"},"type":"module","version":"1.0.0"}
