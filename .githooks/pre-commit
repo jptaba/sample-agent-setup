@@ -16,9 +16,13 @@ if ! bash .agents/skills/review/scripts/scan-secrets.sh --staged; then
   exit 1
 fi
 
-# 3. Skill spec validation (fast; runs every commit).
+# 3. Skill spec + contract validation (fast; runs every commit).
 if ! bash .agents/skills/review/scripts/validate-skills.sh; then
   echo "pre-commit: blocked — skill spec violation."
+  exit 1
+fi
+if ! bash .agents/skills/review/scripts/validate-contracts.sh; then
+  echo "pre-commit: blocked — contract violation."
   exit 1
 fi
 

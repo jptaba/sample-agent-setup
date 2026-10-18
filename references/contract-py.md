@@ -23,7 +23,10 @@ CONTRACT=references/contract-py.md PROOF_CMD="python3 -m unittest discover -s te
   - `word_count("") == 0`, `word_count("   ") == 0`
 
 ## Proof command
-`python3 -m unittest discover -s tests` — must exit 0.
+```bash
+python3 -m unittest discover -s tests
+```
+Must exit 0.
 
 ## Done when
 - Both functions match the outputs above on ASCII, unicode, and empty input.

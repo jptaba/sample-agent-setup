@@ -42,6 +42,7 @@ Skills live canonically in `.agents/skills/` — one copy, no drift.
 - **Claude Code**: run `bash scripts/setup.sh` to link the skills into `.claude/skills/` for project discovery. The isolated reviewer is `.claude/agents/code-reviewer.md` (read-only tools, preloads the `review` skill). After setup, the repo also works as a plugin: `claude --plugin-dir .` (manifest in `.claude-plugin/plugin.json`).
 - **GitHub Copilot**: skills are read from `.agents/skills/` automatically — no setup needed. The isolated reviewer is the `.github/agents/reviewer.agent.md` custom agent (read-only `read` + `search` tools).
 - The discovery links are generated, not committed (the GitHub snapshot push rejects symlinks) — `scripts/setup.sh` recreates them and they're gitignored. Never edit through a link target; edit the canonical skill.
+- Windows: run the scripts under Git Bash or WSL. Each skill's `compatibility` frontmatter states what it needs.
 
 ## Make it yours
 

@@ -10,7 +10,7 @@ allowed-tools: Read Write Edit Bash Grep Glob
 
 # Implement
 
-1. Read `references/contract.md` first. It is the whole task.
+1. Read `references/contract.md` first. It is the whole task. If the task names a non-default contract (e.g. `references/contract-py.md`), read that file instead and pass `CONTRACT=`, `PROOF_CMD=`, `PACKET=` to the evidence script (see README).
 2. Change only what the contract names. Anything else is a separate contract.
 3. Write the code and the tests together. A bug fix gets a regression test.
 4. Run the proof command from the contract. It must exit 0.

@@ -22,7 +22,10 @@ CONTRACT=references/contract-java.md PROOF_CMD="mvn -q -f java-demo/pom.xml test
   - `wordCount("")` returns `0`, `wordCount("   ")` returns `0`
 
 ## Proof command
-`mvn -q -f java-demo/pom.xml test` — must exit 0. (Requires JDK 21+ and Maven; the first run downloads JUnit 5 from Maven Central.)
+```bash
+mvn -q -f java-demo/pom.xml test
+```
+Must exit 0. (Requires JDK 21+ and Maven; the first run downloads JUnit 5 from Maven Central.)
 
 ## Done when
 - Both methods match the outputs above on ASCII, unicode, and empty input.

@@ -30,6 +30,7 @@ You do not know this project's domain. You check three things:
 
 - Verdict: APPROVE or REQUEST CHANGES, with file and line per finding.
 - What you could not check, stated explicitly.
+- Format: see `references/verdict-example.md` in this skill's folder.
 
 ## Hard rules
 

@@ -1,5 +1,5 @@
-# PR packet — generated 2026-10-18T22:36:11Z
-Contract: references/contract-py.md (sha256: f43d67baf3ab54db72fbfbb1b39cb0ec89cc450a0b1e31a6df1f29ce32e113b2)
+# PR packet — generated 2026-10-18T22:47:41Z
+Contract: references/contract-py.md (sha256: aeadbad5b330b2e5d98bbf046847d70312a1b2d0fd2ab0ec9f411894ebf72d85)
 
 ## What was asked (copied from the contract)
 ## Inputs
@@ -15,7 +15,10 @@ Contract: references/contract-py.md (sha256: f43d67baf3ab54db72fbfbb1b39cb0ec89c
   - `word_count("") == 0`, `word_count("   ") == 0`
 
 ## Proof command
-`python3 -m unittest discover -s tests` — must exit 0.
+```bash
+python3 -m unittest discover -s tests
+```
+Must exit 0.
 
 ## Done when
 - Both functions match the outputs above on ASCII, unicode, and empty input.
@@ -25,18 +28,13 @@ Contract: references/contract-py.md (sha256: f43d67baf3ab54db72fbfbb1b39cb0ec89c
 
 ## What changed (git diff --stat)
 ```
- .agents/skills/implement/SKILL.md                 |  7 +++-
- .agents/skills/pr-packet/SKILL.md                 |  7 +++-
- .agents/skills/review/SKILL.md                    | 11 ++++--
- .agents/skills/review/scripts/collect-evidence.sh |  5 +--
- .agents/skills/review/scripts/scan-secrets.sh     |  2 +-
- .claude/agents/code-reviewer.md                   |  1 +
- .githooks/pre-commit                              | 12 +++++--
- .github/copilot-instructions.md                   | 10 ++++--
- AGENTS.md                                         |  5 +--
- README.md                                         |  8 +++++
- pr-packet.md                                      | 42 +++++++++++------------
- 11 files changed, 74 insertions(+), 36 deletions(-)
+ .agents/skills/review/scripts/collect-evidence.sh | 30 +++++++++++++++-
+ .githooks/pre-commit                              |  6 +++-
+ pr-packet.md                                      | 44 +++++++++++------------
+ references/contract-java.md                       |  5 ++-
+ references/contract-py.md                         |  5 ++-
+ references/contract.md                            |  5 ++-
+ 6 files changed, 67 insertions(+), 28 deletions(-)
 ```
 
 ## What was run, and the exit code
@@ -44,7 +42,7 @@ Contract: references/contract-py.md (sha256: f43d67baf3ab54db72fbfbb1b39cb0ec89c
 $ python3 -m unittest discover -s tests
 ......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.000s
+Ran 6 tests in 0.001s
 
 OK
 exit code: 0

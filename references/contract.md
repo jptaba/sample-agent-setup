@@ -17,7 +17,10 @@ contract — the evidence script uses it unless you override with `CONTRACT=`.
   - `wordCount("") === 0`, `wordCount("   ") === 0`
 
 ## Proof command
-`node --test "tests-ts/**/*.test.ts"` — must exit 0. (Node 22+ runs the TypeScript directly; no build step, no dependencies. The explicit glob is used because `node --test <dir>` doesn't discover `.ts` files on its own.)
+```bash
+node --test "tests-ts/**/*.test.ts"
+```
+Must exit 0. (Node 22+ runs the TypeScript directly; no build step, no dependencies. The explicit glob is used because `node --test <dir>` doesn't discover `.ts` files on its own.)
 
 ## Done when
 - Both functions match the outputs above on ASCII, unicode, and empty input.

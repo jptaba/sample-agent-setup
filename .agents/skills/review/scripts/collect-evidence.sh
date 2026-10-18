@@ -2,7 +2,7 @@
 # collect-evidence.sh — assembles the PR packet from real outputs, never from memory.
 #
 # Usage:
-#   bash .agents/skills/review/scripts/collect-evidence.sh
+#   bash .agents/skills/review/scripts/collect-evidence.sh [--verify]
 #
 # Env overrides:
 #   PROOF_CMD  command that proves the contract (default: the TypeScript suite)
@@ -10,6 +10,10 @@
 #   PACKET     where to write the packet (default: pr-packet.md)
 #
 # Exit code: 0 only if the proof command passed.
+#
+# --verify: don't regenerate. Check the committed packet is fresh: its contract
+# SHA-256 must match the contract file, and its verdict must agree with a fresh
+# proof run. Exit 0 = fresh, 1 = stale.
 
 set -uo pipefail
 
@@ -18,6 +22,30 @@ PACKET="${PACKET:-pr-packet.md}"
 CONTRACT="${CONTRACT:-references/contract.md}"
 CONTRACT_SHA="$(sha256sum "$CONTRACT" 2>/dev/null | cut -d' ' -f1)"
 [ -z "$CONTRACT_SHA" ] && CONTRACT_SHA="(contract not found)"
+
+if [ "${1:-}" = "--verify" ]; then
+  [ -f "$PACKET" ] || { echo "verify: no packet at $PACKET — run without --verify first"; exit 1; }
+  PKT_SHA="$(grep -m1 -oP '^Contract: \S+ \(sha256: \K[0-9a-f]+' "$PACKET" || true)"
+  [ "$PKT_SHA" = "$CONTRACT_SHA" ] || {
+    echo "verify: STALE — packet's contract sha ($PKT_SHA) != $CONTRACT ($CONTRACT_SHA). Regenerate the packet."
+    exit 1
+  }
+  bash -c "$PROOF_CMD" >/dev/null 2>&1
+  PROOF_EXIT=$?
+  if [ "$PROOF_EXIT" -eq 0 ]; then
+    grep -q "READY FOR REVIEW" "$PACKET" || {
+      echo "verify: STALE — proof passes but packet is not READY FOR REVIEW. Regenerate."
+      exit 1
+    }
+  else
+    grep -q "NOT READY" "$PACKET" || {
+      echo "verify: STALE — proof fails (exit $PROOF_EXIT) but packet is not NOT READY. Regenerate."
+      exit 1
+    }
+  fi
+  echo "verify: OK — $PACKET is fresh for $CONTRACT"
+  exit 0
+fi
 
 echo "--- proof command ---"
 echo "\$ $PROOF_CMD"

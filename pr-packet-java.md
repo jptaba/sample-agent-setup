@@ -1,5 +1,5 @@
-# PR packet — generated 2026-10-18T22:36:16Z
-Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e058d5ea2312350b3a682fd1fe30621d07)
+# PR packet — generated 2026-10-18T22:47:46Z
+Contract: references/contract-java.md (sha256: 3269f6d090f2b3f55efd74d2d9ec630eda1e79bc703bf6e2d7b7d54bc37b7036)
 
 ## What was asked (copied from the contract)
 ## Inputs
@@ -15,7 +15,10 @@ Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e05
   - `wordCount("")` returns `0`, `wordCount("   ")` returns `0`
 
 ## Proof command
-`mvn -q -f java-demo/pom.xml test` — must exit 0. (Requires JDK 21+ and Maven; the first run downloads JUnit 5 from Maven Central.)
+```bash
+mvn -q -f java-demo/pom.xml test
+```
+Must exit 0. (Requires JDK 21+ and Maven; the first run downloads JUnit 5 from Maven Central.)
 
 ## Done when
 - Both methods match the outputs above on ASCII, unicode, and empty input.
@@ -25,19 +28,14 @@ Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e05
 
 ## What changed (git diff --stat)
 ```
- .agents/skills/implement/SKILL.md                 |  7 +++-
- .agents/skills/pr-packet/SKILL.md                 |  7 +++-
- .agents/skills/review/SKILL.md                    | 11 ++++--
- .agents/skills/review/scripts/collect-evidence.sh |  5 +--
- .agents/skills/review/scripts/scan-secrets.sh     |  2 +-
- .claude/agents/code-reviewer.md                   |  1 +
- .githooks/pre-commit                              | 12 +++++--
- .github/copilot-instructions.md                   | 10 ++++--
- AGENTS.md                                         |  5 +--
- README.md                                         |  8 +++++
- pr-packet-py.md                                   | 28 +++++++--------
- pr-packet.md                                      | 42 +++++++++++------------
- 12 files changed, 88 insertions(+), 50 deletions(-)
+ .agents/skills/review/scripts/collect-evidence.sh | 30 +++++++++++++++-
+ .githooks/pre-commit                              |  6 +++-
+ pr-packet-py.md                                   | 30 ++++++++--------
+ pr-packet.md                                      | 44 +++++++++++------------
+ references/contract-java.md                       |  5 ++-
+ references/contract-py.md                         |  5 ++-
+ references/contract.md                            |  5 ++-
+ 7 files changed, 81 insertions(+), 44 deletions(-)
 ```
 
 ## What was run, and the exit code
@@ -45,7 +43,7 @@ Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e05
 $ export JAVA_HOME=/home/hatch/.jdk/jdk-21.0.12.1+1; export PATH=$JAVA_HOME/bin:$PATH; rm -rf /tmp/javabuild && mkdir -p /tmp/javabuild/classes /tmp/javabuild/test-classes && javac -d /tmp/javabuild/classes java-demo/src/main/java/com/sample/textutils/TextUtils.java && javac -cp /tmp/javabuild/classes:/tmp/junit-standalone.jar -d /tmp/javabuild/test-classes java-demo/src/test/java/com/sample/textutils/TextUtilsTest.java && java -jar /tmp/junit-standalone.jar --class-path /tmp/javabuild/classes:/tmp/javabuild/test-classes --scan-class-path
 [36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
 
-Test run finished after 194 ms
+Test run finished after 204 ms
 [         4 containers found      ]
 [         0 containers skipped    ]
 [         4 containers started    ]

@@ -9,7 +9,9 @@ Sample project for the three-layer agent setup. Rules load every session, every 
 - Evidence: `bash .agents/skills/review/scripts/collect-evidence.sh` (exit 0 required before review; override with `CONTRACT=`, `PROOF_CMD=`, `PACKET=` for the Python/Java demos — see README)
 
 ## Code rules
-- Python 3.10+, stdlib only. Type hints and a one-line docstring on public functions.
+- TypeScript (primary): explicit parameter and return types on public functions; `node:`-prefixed imports for builtins; no new runtime dependencies without a contract update.
+- Python: 3.10+, stdlib only. Type hints and a one-line docstring on public functions.
+- Java: 21+, JUnit 5, test scope only for test deps. Utility classes are `final` with a private constructor.
 
 ## Testing rules
 - New behavior ships with tests. Bug fixes ship with a regression test.
