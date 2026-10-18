@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Pre-commit guardrails: branch protection, secret scan, file-size limit.
+# Install: git config core.hooksPath .githooks
+set -u
+
+# 1. Block direct commits to main/master.
+branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo detached)"
+if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
+  echo "pre-commit: blocked — don't commit directly to '$branch'. Create a branch and open a PR."
+  exit 1
+fi
+
+# 2. Secret scan on staged files.
+if ! bash .agents/skills/review/scripts/scan-secrets.sh --staged; then
+  echo "pre-commit: blocked — possible secret in staged files."
+  exit 1
+fi
+
+# 3. Block files larger than 1 MB.
+big="$(git diff --cached --name-only --diff-filter=ACM | while read -r f; do
+  [ -f "$f" ] || continue
+  size="$(wc -c < "$f")"
+  [ "$size" -gt 1048576 ] && echo "$f ($size bytes)"
+done)"
+if [ -n "$big" ]; then
+  echo "pre-commit: blocked — files over 1 MB:"
+  echo "$big"
+  exit 1
+fi
+
+echo "pre-commit: OK"
