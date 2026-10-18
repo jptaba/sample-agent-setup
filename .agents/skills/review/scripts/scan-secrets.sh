@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # scan-secrets.sh — dependency-free secret-pattern scan. Exit 1 on any hit.
 # Usage: scan-secrets.sh --staged | <paths...>
-set -u
+set -uo pipefail
 
 if [ "${1:-}" = "--staged" ]; then
   mapfile -t FILES < <(git diff --cached --name-only --diff-filter=ACM)

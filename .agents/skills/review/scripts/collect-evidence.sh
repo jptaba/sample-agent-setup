@@ -5,12 +5,13 @@
 #   bash .agents/skills/review/scripts/collect-evidence.sh
 #
 # Env overrides:
-#   PROOF_CMD  command that proves the contract (default: python3 -m unittest discover -s tests)
+#   PROOF_CMD  command that proves the contract (default: the TypeScript suite)
+#   CONTRACT   contract file (default: references/contract.md)
 #   PACKET     where to write the packet (default: pr-packet.md)
 #
 # Exit code: 0 only if the proof command passed.
 
-set -u
+set -uo pipefail
 
 PROOF_CMD="${PROOF_CMD:-node --test \"tests-ts/**/*.test.ts\"}"
 PACKET="${PACKET:-pr-packet.md}"

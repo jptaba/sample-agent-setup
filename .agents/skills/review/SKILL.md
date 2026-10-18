@@ -1,6 +1,11 @@
 ---
 name: review
-description: Read-only review of a diff against references/contract.md. Use after implementation, before merge. Judges the diff; never edits code.
+description: Read-only code review against references/contract.md. Verifies the diff matches the contract, the evidence packet (proof exit 0, contract SHA-256, clean secret scan), and returns an APPROVE / REQUEST CHANGES verdict with file-and-line citations. Use after implementation, before merge. Never edits code and never approves its own diff.
+license: MIT
+compatibility: Requires git, bash, sha256sum.
+metadata:
+  version: "2.0.0"
+allowed-tools: Read Grep Glob Bash
 ---
 
 # Review
@@ -18,8 +23,8 @@ You do not know this project's domain. You check three things:
 1. Read `references/contract.md`.
 2. Run `bash .agents/skills/review/scripts/collect-evidence.sh` yourself; note the exit code.
 3. Recompute the contract hash (`sha256sum references/contract.md`) and compare it with the packet. Run `bash .agents/skills/review/scripts/scan-secrets.sh --staged` and confirm the run appears in `.agents/runs/runs.jsonl`.
-3. Read the diff (`git diff`, `git diff --cached`). Stay on the changed files.
-4. Check readability, duplication, error handling, and secrets.
+4. Read the diff (`git diff`, `git diff --cached`). Stay on the changed files.
+5. Check readability, duplication, error handling, and secrets.
 
 ## Output
 

@@ -1,6 +1,11 @@
 ---
 name: implement
-description: Implement exactly what references/contract.md names — inputs, outputs, proof command. Use when building or fixing under contract.
+description: Implements or fixes exactly what references/contract.md names, runs the contract's proof command, and generates the evidence packet. Use when building or changing the contracted feature. Do NOT use for code review or for approving a diff — that is the review skill's job.
+license: MIT
+compatibility: Requires git, bash, and the proof toolchain named in references/contract.md.
+metadata:
+  version: "2.0.0"
+allowed-tools: Read Write Edit Bash Grep Glob
 ---
 
 # Implement

@@ -1,4 +1,4 @@
-# PR packet — generated 2026-10-18T13:05:11Z
+# PR packet — generated 2026-10-18T22:36:16Z
 Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e058d5ea2312350b3a682fd1fe30621d07)
 
 ## What was asked (copied from the contract)
@@ -25,18 +25,19 @@ Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e05
 
 ## What changed (git diff --stat)
 ```
- .agents/skills/review/scripts/collect-evidence.sh |  2 +-
- AGENTS.md                                         |  2 +-
- README.md                                         | 13 ++---
- pr-packet.md                                      | 67 ++++++++++++++---------
- references/contract-py.md                         | 12 +++-
- references/contract.md                            | 11 +---
- 6 files changed, 62 insertions(+), 45 deletions(-)
- pr-packet-ts.md           | 69 -----------------------------------------------
- references/contract-py.md | 28 +++++++++++++++++++
- references/contract-ts.md | 35 ------------------------
- references/contract.md    | 31 ++++++++++++---------
- 4 files changed, 47 insertions(+), 116 deletions(-)
+ .agents/skills/implement/SKILL.md                 |  7 +++-
+ .agents/skills/pr-packet/SKILL.md                 |  7 +++-
+ .agents/skills/review/SKILL.md                    | 11 ++++--
+ .agents/skills/review/scripts/collect-evidence.sh |  5 +--
+ .agents/skills/review/scripts/scan-secrets.sh     |  2 +-
+ .claude/agents/code-reviewer.md                   |  1 +
+ .githooks/pre-commit                              | 12 +++++--
+ .github/copilot-instructions.md                   | 10 ++++--
+ AGENTS.md                                         |  5 +--
+ README.md                                         |  8 +++++
+ pr-packet-py.md                                   | 28 +++++++--------
+ pr-packet.md                                      | 42 +++++++++++------------
+ 12 files changed, 88 insertions(+), 50 deletions(-)
 ```
 
 ## What was run, and the exit code
@@ -44,7 +45,7 @@ Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e05
 $ export JAVA_HOME=/home/hatch/.jdk/jdk-21.0.12.1+1; export PATH=$JAVA_HOME/bin:$PATH; rm -rf /tmp/javabuild && mkdir -p /tmp/javabuild/classes /tmp/javabuild/test-classes && javac -d /tmp/javabuild/classes java-demo/src/main/java/com/sample/textutils/TextUtils.java && javac -cp /tmp/javabuild/classes:/tmp/junit-standalone.jar -d /tmp/javabuild/test-classes java-demo/src/test/java/com/sample/textutils/TextUtilsTest.java && java -jar /tmp/junit-standalone.jar --class-path /tmp/javabuild/classes:/tmp/javabuild/test-classes --scan-class-path
 [36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
 
-Test run finished after 259 ms
+Test run finished after 194 ms
 [         4 containers found      ]
 [         0 containers skipped    ]
 [         4 containers started    ]

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Pre-commit guardrails: branch protection, secret scan, file-size limit.
+# Pre-commit guardrails: branch protection, secret scan, skill validation, file-size limit.
 # Install: git config core.hooksPath .githooks
-set -u
+set -uo pipefail
 
 # 1. Block direct commits to main/master.
 branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo detached)"
@@ -16,7 +16,13 @@ if ! bash .agents/skills/review/scripts/scan-secrets.sh --staged; then
   exit 1
 fi
 
-# 3. Block files larger than 1 MB.
+# 3. Skill spec validation (fast; runs every commit).
+if ! bash .agents/skills/review/scripts/validate-skills.sh; then
+  echo "pre-commit: blocked — skill spec violation."
+  exit 1
+fi
+
+# 4. Block files larger than 1 MB.
 big="$(git diff --cached --name-only --diff-filter=ACM | while read -r f; do
   [ -f "$f" ] || continue
   size="$(wc -c < "$f")"

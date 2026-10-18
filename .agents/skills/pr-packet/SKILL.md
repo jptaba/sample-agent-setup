@@ -1,6 +1,11 @@
 ---
 name: pr-packet
-description: Assemble the PR packet from the evidence script's output. Use to produce merge evidence. Never invent claims.
+description: Assembles the merge-evidence packet by running .agents/skills/review/scripts/collect-evidence.sh — proof output, diff stat, contract SHA-256, secret scan, run ledger. Use to produce the packet a reviewer judges. Never invents claims; every line comes from the script.
+license: MIT
+compatibility: Requires git, bash, sha256sum.
+metadata:
+  version: "2.0.0"
+allowed-tools: Read Bash
 ---
 
 # PR packet

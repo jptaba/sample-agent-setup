@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 .agents/runs/
 node_modules/
+# Generated platform-discovery links (scripts/setup.sh recreates them;
+# the snapshot push tooling rejects symlinks, so these are never committed).
+/.claude/skills/
+/skills/
+/agents/

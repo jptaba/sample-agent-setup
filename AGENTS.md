@@ -6,7 +6,7 @@ Sample project for the three-layer agent setup. Rules load every session, every 
 - Tests (TypeScript demo, primary): `node --test "tests-ts/**/*.test.ts"` (Node 22+ runs .ts directly — nothing to install)
 - Tests (Python demo): `python3 -m unittest discover -s tests` (stdlib only — nothing to install)
 - Tests (Java demo): `mvn -q -f java-demo/pom.xml test` (needs JDK 21+ and Maven; first run fetches JUnit 5)
-- Evidence: `bash .agents/skills/review/scripts/collect-evidence.sh` (exit 0 required before review; override with `CONTRACT=`, `PROOF_CMD=`, `PACKET=` for the TS demo — see README)
+- Evidence: `bash .agents/skills/review/scripts/collect-evidence.sh` (exit 0 required before review; override with `CONTRACT=`, `PROOF_CMD=`, `PACKET=` for the Python/Java demos — see README)
 
 ## Code rules
 - Python 3.10+, stdlib only. Type hints and a one-line docstring on public functions.
@@ -20,12 +20,13 @@ Sample project for the three-layer agent setup. Rules load every session, every 
 
 ## Task procedures (skills)
 - Match the task to a skill in `.agents/skills/<name>/SKILL.md` and follow it — do not improvise a different workflow.
+- Skills live canonically in `.agents/skills/`; `.claude/skills/` holds symlinks for Claude Code discovery (Copilot reads `.agents/skills/` directly).
 - `implement`: change only what `references/contract.md` names.
 - `review`: judge the diff, do not edit. Three checks: diff matches contract, script exited 0, every claim cites file/line/output.
 - `pr-packet`: assemble from the evidence script's output. Do not invent claims.
 
 ## Review policy
-- Every behavior change gets an isolated review before merge: the `code-reviewer` subagent (`.claude/agents/code-reviewer.md`, no write tools) or Copilot code review.
+- Every behavior change gets an isolated review before merge: the `code-reviewer` subagent (`.claude/agents/code-reviewer.md`, no write tools) or the `reviewer` custom agent (`.github/agents/reviewer.agent.md`, read-only tools).
 - The reviewer reports findings with file and line. It never edits code.
 - The coding agent never approves its own diff.
 - A person restates the packet in their own words before merge. One named owner, not a committee.

@@ -1,4 +1,4 @@
-# PR packet — generated 2026-10-18T13:05:06Z
+# PR packet — generated 2026-10-18T22:36:11Z
 Contract: references/contract.md (sha256: 8b79cb6f7eb11b9bf1df51e2dd7d2878c0904563f5c51f7aea2c16eb1bdcd180)
 
 ## What was asked (copied from the contract)
@@ -25,32 +25,32 @@ Contract: references/contract.md (sha256: 8b79cb6f7eb11b9bf1df51e2dd7d2878c09045
 
 ## What changed (git diff --stat)
 ```
- .agents/skills/review/scripts/collect-evidence.sh |  2 +-
- AGENTS.md                                         |  2 +-
- README.md                                         | 13 ++++++-------
- references/contract-py.md                         | 12 ++++++++++--
- references/contract.md                            | 11 +++--------
- 5 files changed, 21 insertions(+), 19 deletions(-)
- pr-packet-ts.md           | 69 -----------------------------------------------
- references/contract-py.md | 28 +++++++++++++++++++
- references/contract-ts.md | 35 ------------------------
- references/contract.md    | 31 ++++++++++++---------
- 4 files changed, 47 insertions(+), 116 deletions(-)
+ .agents/skills/implement/SKILL.md                 |  7 ++++++-
+ .agents/skills/pr-packet/SKILL.md                 |  7 ++++++-
+ .agents/skills/review/SKILL.md                    | 11 ++++++++---
+ .agents/skills/review/scripts/collect-evidence.sh |  5 +++--
+ .agents/skills/review/scripts/scan-secrets.sh     |  2 +-
+ .claude/agents/code-reviewer.md                   |  1 +
+ .githooks/pre-commit                              | 12 +++++++++---
+ .github/copilot-instructions.md                   | 10 ++++++++--
+ AGENTS.md                                         |  5 +++--
+ README.md                                         |  8 ++++++++
+ 10 files changed, 53 insertions(+), 15 deletions(-)
 ```
 
 ## What was run, and the exit code
 ```
 $ node --test "tests-ts/**/*.test.ts"
 ▶ slugify
-  ✔ basic (8.044169ms)
-  ✔ punctuation and case (0.286187ms)
-  ✔ unicode (0.346901ms)
-  ✔ empty (0.276398ms)
-✔ slugify (11.54786ms)
+  ✔ basic (13.904691ms)
+  ✔ punctuation and case (0.327472ms)
+  ✔ unicode (0.363807ms)
+  ✔ empty (0.258088ms)
+✔ slugify (17.009092ms)
 ▶ wordCount
-  ✔ basic (0.529563ms)
-  ✔ empty and whitespace (0.280667ms)
-✔ wordCount (1.191895ms)
+  ✔ basic (0.501553ms)
+  ✔ empty and whitespace (0.269455ms)
+✔ wordCount (1.172771ms)
 ℹ tests 6
 ℹ suites 2
 ℹ pass 6
@@ -58,7 +58,7 @@ $ node --test "tests-ts/**/*.test.ts"
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 288.545529
+ℹ duration_ms 312.285425
 exit code: 0
 ```
 

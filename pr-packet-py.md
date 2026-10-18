@@ -1,4 +1,4 @@
-# PR packet — generated 2026-10-18T13:05:06Z
+# PR packet — generated 2026-10-18T22:36:11Z
 Contract: references/contract-py.md (sha256: f43d67baf3ab54db72fbfbb1b39cb0ec89cc450a0b1e31a6df1f29ce32e113b2)
 
 ## What was asked (copied from the contract)
@@ -25,18 +25,18 @@ Contract: references/contract-py.md (sha256: f43d67baf3ab54db72fbfbb1b39cb0ec89c
 
 ## What changed (git diff --stat)
 ```
- .agents/skills/review/scripts/collect-evidence.sh |  2 +-
- AGENTS.md                                         |  2 +-
- README.md                                         | 13 ++---
- pr-packet.md                                      | 67 ++++++++++++++---------
- references/contract-py.md                         | 12 +++-
- references/contract.md                            | 11 +---
- 6 files changed, 62 insertions(+), 45 deletions(-)
- pr-packet-ts.md           | 69 -----------------------------------------------
- references/contract-py.md | 28 +++++++++++++++++++
- references/contract-ts.md | 35 ------------------------
- references/contract.md    | 31 ++++++++++++---------
- 4 files changed, 47 insertions(+), 116 deletions(-)
+ .agents/skills/implement/SKILL.md                 |  7 +++-
+ .agents/skills/pr-packet/SKILL.md                 |  7 +++-
+ .agents/skills/review/SKILL.md                    | 11 ++++--
+ .agents/skills/review/scripts/collect-evidence.sh |  5 +--
+ .agents/skills/review/scripts/scan-secrets.sh     |  2 +-
+ .claude/agents/code-reviewer.md                   |  1 +
+ .githooks/pre-commit                              | 12 +++++--
+ .github/copilot-instructions.md                   | 10 ++++--
+ AGENTS.md                                         |  5 +--
+ README.md                                         |  8 +++++
+ pr-packet.md                                      | 42 +++++++++++------------
+ 11 files changed, 74 insertions(+), 36 deletions(-)
 ```
 
 ## What was run, and the exit code
@@ -44,7 +44,7 @@ Contract: references/contract-py.md (sha256: f43d67baf3ab54db72fbfbb1b39cb0ec89c
 $ python3 -m unittest discover -s tests
 ......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.001s
+Ran 6 tests in 0.000s
 
 OK
 exit code: 0

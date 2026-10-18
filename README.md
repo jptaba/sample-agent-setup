@@ -35,6 +35,14 @@ CONTRACT=references/contract-java.md PROOF_CMD="mvn -q -f java-demo/pom.xml test
 Each run stamps its contract's SHA-256 into its packet and its own line in
 `.agents/runs/runs.jsonl`, so the two evidence trails never mix.
 
+## Use it on your platform
+
+Skills live canonically in `.agents/skills/` — one copy, no drift.
+
+- **Claude Code**: run `bash scripts/setup.sh` to link the skills into `.claude/skills/` for project discovery. The isolated reviewer is `.claude/agents/code-reviewer.md` (read-only tools, preloads the `review` skill). After setup, the repo also works as a plugin: `claude --plugin-dir .` (manifest in `.claude-plugin/plugin.json`).
+- **GitHub Copilot**: skills are read from `.agents/skills/` automatically — no setup needed. The isolated reviewer is the `.github/agents/reviewer.agent.md` custom agent (read-only `read` + `search` tools).
+- The discovery links are generated, not committed (the GitHub snapshot push rejects symlinks) — `scripts/setup.sh` recreates them and they're gitignored. Never edit through a link target; edit the canonical skill.
+
 ## Make it yours
 
 1. Replace `references/contract.md` with your project's contract: inputs, outputs, the command that proves them, what a bad result looks like.
