@@ -1,0 +1,57 @@
+# verify — the agent workflow's checks, enforced by CI on every PR.
+# Mirrors what the pre-commit hook and the review skill require locally.
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Validate skills against the Agent Skills spec
+        run: bash .agents/skills/review/scripts/validate-skills.sh
+
+      - name: Validate contracts
+        run: bash .agents/skills/review/scripts/validate-contracts.sh
+
+      - name: Secret scan (all tracked files)
+        run: git ls-files -z | xargs -0 bash .agents/skills/review/scripts/scan-secrets.sh
+
+      - name: Proof — TypeScript (primary demo)
+        run: node --test "tests-ts/**/*.test.ts"
+
+      - name: Proof — Python
+        run: python3 -m unittest discover -s tests
+
+      - name: Proof — Java
+        run: mvn -q -f java-demo/pom.xml test
+
+      - name: Packet freshness — TypeScript
+        run: bash .agents/skills/review/scripts/collect-evidence.sh --verify
+
+      - name: Packet freshness — Python
+        run: CONTRACT=references/contract-py.md PROOF_CMD="python3 -m unittest discover -s tests" PACKET=pr-packet-py.md bash .agents/skills/review/scripts/collect-evidence.sh --verify
+
+      - name: Packet freshness — Java
+        run: CONTRACT=references/contract-java.md PROOF_CMD="mvn -q -f java-demo/pom.xml test" PACKET=pr-packet-java.md bash .agents/skills/review/scripts/collect-evidence.sh --verify
