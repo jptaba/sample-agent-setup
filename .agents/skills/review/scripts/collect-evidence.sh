@@ -12,7 +12,7 @@
 
 set -u
 
-PROOF_CMD="${PROOF_CMD:-python3 -m unittest discover -s tests}"
+PROOF_CMD="${PROOF_CMD:-node --test \"tests-ts/**/*.test.ts\"}"
 PACKET="${PACKET:-pr-packet.md}"
 CONTRACT="${CONTRACT:-references/contract.md}"
 CONTRACT_SHA="$(sha256sum "$CONTRACT" 2>/dev/null | cut -d' ' -f1)"

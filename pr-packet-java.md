@@ -1,4 +1,4 @@
-# PR packet — generated 2026-10-18T12:59:49Z
+# PR packet — generated 2026-10-18T13:05:11Z
 Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e058d5ea2312350b3a682fd1fe30621d07)
 
 ## What was asked (copied from the contract)
@@ -25,18 +25,18 @@ Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e05
 
 ## What changed (git diff --stat)
 ```
- pr-packet-ts.md | 37 +++++++++++++++++++++----------------
- pr-packet.md    | 19 +++++++++++--------
- 2 files changed, 32 insertions(+), 24 deletions(-)
- .github/dependabot.yml                             |  4 +++
- .github/instructions/java.instructions.md          |  8 +++++
- AGENTS.md                                          |  1 +
- README.md                                          | 10 ++++--
- java-demo/pom.xml                                  | 26 ++++++++++++++
- .../main/java/com/sample/textutils/TextUtils.java  | 28 +++++++++++++++
- .../java/com/sample/textutils/TextUtilsTest.java   | 40 ++++++++++++++++++++++
- references/contract-java.md                        | 35 +++++++++++++++++++
- 8 files changed, 149 insertions(+), 3 deletions(-)
+ .agents/skills/review/scripts/collect-evidence.sh |  2 +-
+ AGENTS.md                                         |  2 +-
+ README.md                                         | 13 ++---
+ pr-packet.md                                      | 67 ++++++++++++++---------
+ references/contract-py.md                         | 12 +++-
+ references/contract.md                            | 11 +---
+ 6 files changed, 62 insertions(+), 45 deletions(-)
+ pr-packet-ts.md           | 69 -----------------------------------------------
+ references/contract-py.md | 28 +++++++++++++++++++
+ references/contract-ts.md | 35 ------------------------
+ references/contract.md    | 31 ++++++++++++---------
+ 4 files changed, 47 insertions(+), 116 deletions(-)
 ```
 
 ## What was run, and the exit code
@@ -44,7 +44,7 @@ Contract: references/contract-java.md (sha256: 2623e5eff52753d09411ec20542ed0e05
 $ export JAVA_HOME=/home/hatch/.jdk/jdk-21.0.12.1+1; export PATH=$JAVA_HOME/bin:$PATH; rm -rf /tmp/javabuild && mkdir -p /tmp/javabuild/classes /tmp/javabuild/test-classes && javac -d /tmp/javabuild/classes java-demo/src/main/java/com/sample/textutils/TextUtils.java && javac -cp /tmp/javabuild/classes:/tmp/junit-standalone.jar -d /tmp/javabuild/test-classes java-demo/src/test/java/com/sample/textutils/TextUtilsTest.java && java -jar /tmp/junit-standalone.jar --class-path /tmp/javabuild/classes:/tmp/javabuild/test-classes --scan-class-path
 [36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
 
-Test run finished after 265 ms
+Test run finished after 259 ms
 [         4 containers found      ]
 [         0 containers skipped    ]
 [         4 containers started    ]

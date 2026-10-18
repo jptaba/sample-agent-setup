@@ -1,21 +1,21 @@
-# PR packet — generated 2026-10-18T12:59:44Z
-Contract: references/contract.md (sha256: abb1d0392f2f833bfd10ec965da0e708cd4511b036530ec91c8bca3601e1c1dd)
+# PR packet — generated 2026-10-18T13:05:06Z
+Contract: references/contract.md (sha256: 8b79cb6f7eb11b9bf1df51e2dd7d2878c0904563f5c51f7aea2c16eb1bdcd180)
 
 ## What was asked (copied from the contract)
 ## Inputs
-- `text`: str — any unicode string, possibly empty.
+- `text`: string — any unicode string, possibly empty.
 
 ## Outputs
-- `slugify(text) -> str`: lowercase ASCII slug, words joined by single hyphens, no leading/trailing hyphens.
-  - `slugify("Hello World") == "hello-world"`
-  - `slugify("Café au lait") == "cafe-au-lait"`
-  - `slugify("") == ""`
-- `word_count(text) -> int`: number of whitespace-separated tokens.
-  - `word_count("hello world") == 2`
-  - `word_count("") == 0`, `word_count("   ") == 0`
+- `slugify(text): string`: lowercase ASCII slug, words joined by single hyphens, no leading/trailing hyphens.
+  - `slugify("Hello World") === "hello-world"`
+  - `slugify("Café au lait") === "cafe-au-lait"`
+  - `slugify("") === ""`
+- `wordCount(text): number`: number of whitespace-separated tokens.
+  - `wordCount("hello world") === 2`
+  - `wordCount("") === 0`, `wordCount("   ") === 0`
 
 ## Proof command
-`python3 -m unittest discover -s tests` — must exit 0.
+`node --test "tests-ts/**/*.test.ts"` — must exit 0. (Node 22+ runs the TypeScript directly; no build step, no dependencies. The explicit glob is used because `node --test <dir>` doesn't discover `.ts` files on its own.)
 
 ## Done when
 - Both functions match the outputs above on ASCII, unicode, and empty input.
@@ -25,25 +25,40 @@ Contract: references/contract.md (sha256: abb1d0392f2f833bfd10ec965da0e708cd4511
 
 ## What changed (git diff --stat)
 ```
- .github/dependabot.yml                             |  4 +++
- .github/instructions/java.instructions.md          |  8 +++++
- AGENTS.md                                          |  1 +
- README.md                                          | 10 ++++--
- java-demo/pom.xml                                  | 26 ++++++++++++++
- .../main/java/com/sample/textutils/TextUtils.java  | 28 +++++++++++++++
- .../java/com/sample/textutils/TextUtilsTest.java   | 40 ++++++++++++++++++++++
- references/contract-java.md                        | 35 +++++++++++++++++++
- 8 files changed, 149 insertions(+), 3 deletions(-)
+ .agents/skills/review/scripts/collect-evidence.sh |  2 +-
+ AGENTS.md                                         |  2 +-
+ README.md                                         | 13 ++++++-------
+ references/contract-py.md                         | 12 ++++++++++--
+ references/contract.md                            | 11 +++--------
+ 5 files changed, 21 insertions(+), 19 deletions(-)
+ pr-packet-ts.md           | 69 -----------------------------------------------
+ references/contract-py.md | 28 +++++++++++++++++++
+ references/contract-ts.md | 35 ------------------------
+ references/contract.md    | 31 ++++++++++++---------
+ 4 files changed, 47 insertions(+), 116 deletions(-)
 ```
 
 ## What was run, and the exit code
 ```
-$ python3 -m unittest discover -s tests
-......
-----------------------------------------------------------------------
-Ran 6 tests in 0.006s
-
-OK
+$ node --test "tests-ts/**/*.test.ts"
+▶ slugify
+  ✔ basic (8.044169ms)
+  ✔ punctuation and case (0.286187ms)
+  ✔ unicode (0.346901ms)
+  ✔ empty (0.276398ms)
+✔ slugify (11.54786ms)
+▶ wordCount
+  ✔ basic (0.529563ms)
+  ✔ empty and whitespace (0.280667ms)
+✔ wordCount (1.191895ms)
+ℹ tests 6
+ℹ suites 2
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 288.545529
 exit code: 0
 ```
 

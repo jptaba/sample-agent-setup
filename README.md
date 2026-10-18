@@ -6,26 +6,25 @@ A working sample of the three-layer agent setup:
 2. **Task procedures** — `.agents/skills/` (`implement`, `review`, `pr-packet`; each a folder with `SKILL.md`; the agent sees only name + description until the task matches)
 3. **Isolated reviewer** — `.claude/agents/code-reviewer.md` (Read, Grep, Glob, read-only Bash; Write/Edit denied) plus Copilot review rules in `.github/`
 
-The one project-owned file is `references/contract.md`. The demo feature is two tiny text functions (`src/textutils.py`) with tests (`tests/`).
+The pointed sample project is **TypeScript** (`references/contract.md`): the demo feature is two tiny text functions (`src-ts/textutils.ts`) with tests (`tests-ts/`). Python and Java demos ride along to show the contract is per feature.
 
 ## Try the loop
 
 ```bash
-python3 -m unittest discover -s tests
+node --test "tests-ts/**/*.test.ts"
 bash .agents/skills/review/scripts/collect-evidence.sh   # writes pr-packet.md, exits 0 only if tests pass
 ```
 
 ## Three demos, three contracts
 
-The repo carries a Python, a TypeScript, and a Java demo side by side, to show
-the contract is per feature — the framework doesn't change.
+TypeScript is the primary demo and the default contract. The other two override it:
 
 ```bash
-# Python demo (default contract)
+# TypeScript demo (default contract)
 bash .agents/skills/review/scripts/collect-evidence.sh
 
-# TypeScript demo (override the contract, proof command, and packet)
-CONTRACT=references/contract-ts.md PROOF_CMD='node --test "tests-ts/**/*.test.ts"' PACKET=pr-packet-ts.md \
+# Python demo (override the contract, proof command, and packet)
+CONTRACT=references/contract-py.md PROOF_CMD="python3 -m unittest discover -s tests" PACKET=pr-packet-py.md \
   bash .agents/skills/review/scripts/collect-evidence.sh
 
 # Java demo
